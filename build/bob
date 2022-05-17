@@ -1,0 +1,7 @@
+#!/bin/bash
+# Bob the Builder
+# Call this file to build the project
+
+
+cd CMakeStuff
+cmake --build .
