@@ -1,99 +1,63 @@
 #include <stdio.h>
 
-// need to implement [] operations
+// integer code of the characters that perform functions
 enum Operations {
-  moveF = 62,
-  moveB = 60,
-  changeU = 43,
-  changeD = 45,
-  print = 46,
-  read = 44,
-  loopS = 91,
-  loopE = 93,
+  moveF = 62,    // >
+  moveB = 60,    // <
+  changeU = 43,  // +
+  changeD = 45,  // -
+  print = 46,    // .
+  read = 44,     // ,
 };
 
-int main() {
-  // init
-  // char array[30000] = {0};
-  // char *ptr = array;
-
-  // add to pointer
-  // ++*ptr;
-
-  // minus from pointer
-  // --*ptr;
-
-  // move pointer backward
-  // --ptr;
-  
-  // move pointer forward
-  // ++ptr;
-  
-  // print ptr char
-  // putchar(*ptr);
-
-  enum Operations operations[30000];
-  int loopDepth = 0; 
-  int currentPtrPos = 0;
-
-  char array[30000] = {0};
+int main(int argc, char *argv[]) {
+  // Init variables
+  char array[32768] = {0};
+  // Pointer of the char array to make magic
   char *ptr = array;
 
+  // char represented as an integer
   int c;
-  FILE *file;
-  file = fopen("code.e", "r");
 
+  // File to read
+  FILE *file;
+  if (argc == 2) {
+    //printf("%s", argv[1]);
+    file = fopen(argv[1], "r");
+  } else if (argc == 1) {
+    printf("Please pass in the file name\n");
+    return 0;
+  }
+
+  // Loop over file until the EOF
   while ((c = getc(file)) != EOF) {
-    //printf("%d\n", c);
-    if (loopDepth < 1) {
-      switch (c) {
-        case (moveF):
-          ++ptr;
-          break;
-        case (moveB):
-          --ptr;
-          break;
-        case (changeU):
-          ++*ptr;
-          break;
-        case (changeD):
-          --*ptr;
-          break;
-        case (print):
-          putchar(*ptr);
-          break;
-        case (read):
-          *ptr = getchar();
-          break;
-        case (loopS):
-          loopDepth++;
-          break;
-        case (loopE):
-          loopDepth--;
-          break;
-      }
-    } else {
-      printf("Looping");
-      switch (c) {
-        case (moveF):
-          break;
-        case (moveB):
-          break;
-        case (changeU):
-          break;
-        case(changeD):
-          break;
-        case (print):
-          break;
-        case(read):
-          break;
-        case (loopS):
-          loopDepth++;
-          break;
-        case (loopE):
-          loopDepth--;
-          break;
-      }
+    // Switch statement of char
+    // Switch statement is nicer than if/else
+    switch (c) {
+      // Move forward through pointer
+      case (moveF):
+        ++ptr;
+        break;
+      // Move backward through pointer
+      case (moveB):
+        --ptr;
+        break;
+      // Increment to pointer value
+      case (changeU):
+        ++*ptr;
+        break;
+      // Decrement to pointer value
+      case (changeD):
+        --*ptr;
+        break;
+      // Print out the value of the pointer value
+      case (print):
+        putchar(*ptr);
+        break;
+      // Read user input to pointer value
+      case (read):
+        *ptr = getchar();
+        break;
     }
   }
   fclose(file);
