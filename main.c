@@ -1,4 +1,6 @@
+#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 // integer code of the characters that perform functions
 enum Operations {
@@ -8,6 +10,7 @@ enum Operations {
   changeD = 45,  // -
   print = 46,    // .
   read = 44,     // ,
+  mult = 42,     // *
 };
 
 int main(int argc, char *argv[]) {
@@ -57,6 +60,11 @@ int main(int argc, char *argv[]) {
       // Read user input to pointer value
       case (read):
         *ptr = getchar();
+        break;
+      case (mult):
+        sprintf(&*ptr, "%c", atoi(&*ptr) * atoi(&*ptr));
+        putchar(atoi(&*ptr) * 4);
+        putchar(++*ptr);
         break;
     }
   }
