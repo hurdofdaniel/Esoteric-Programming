@@ -15,7 +15,7 @@ This shouldn't be too difficult but will take some work
 
 | Esoteric | C                        |
 | -------- | ------------------------ |
-| Init     | char array\[30000] = {0}; |
+| Init     | char array\[32768] = {0}; |
 | Init     | char \*ptr = array;       |
 | >        | ++ptr;                   |
 | <        | --ptr;                   |
